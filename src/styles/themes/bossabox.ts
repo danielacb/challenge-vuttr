@@ -3,6 +3,7 @@ export default {
 
   colors: {
     white: '#FFFFFF',
+    black: '#000000',
     darkWhite: '#FCFCFD',
     darkerWhite: '#F5F4F6',
     darkestWhite: '#EBEAED',

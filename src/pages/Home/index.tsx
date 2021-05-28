@@ -5,6 +5,7 @@ import SearchBar from 'components/SearchBar';
 import ToolCard from 'components/ToolCard';
 
 import * as S from './styles';
+import Spinner from 'components/Spinner';
 
 type ToolProps = {
   id: string;
@@ -16,11 +17,14 @@ type ToolProps = {
 
 const Home: React.FC = () => {
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   const [tools, setTools] = useState<ToolProps[]>([]);
 
   const getTools = async () => {
+    setLoading(true);
     const { data } = await api.get('tools');
     setTools(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -36,9 +40,13 @@ const Home: React.FC = () => {
         <SearchBar query={query} setQuery={setQuery} />
       </S.Actions>
 
-      {tools.map((tool) => {
-        return <ToolCard key={tool.id} tool={tool} />;
-      })}
+      {loading ? (
+        <Spinner />
+      ) : (
+        tools.map((tool) => {
+          return <ToolCard key={tool.id} tool={tool} />;
+        })
+      )}
     </S.Container>
   );
 };

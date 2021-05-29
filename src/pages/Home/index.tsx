@@ -33,6 +33,30 @@ const Home: React.FC = () => {
     getTools();
   }, []);
 
+  useEffect(() => {
+    const getQueryTools = async () => {
+      setLoading(true);
+      if (isTagSelected) {
+        const { data } = await api.get('tools', {
+          params: {
+            tags_like: query,
+          },
+        });
+        setTools(data);
+      } else {
+        const { data } = await api.get('tools', {
+          params: {
+            q: query,
+          },
+        });
+        setTools(data);
+      }
+      setLoading(false);
+    };
+
+    getQueryTools();
+  }, [query, isTagSelected]);
+
   return (
     <S.Container>
       <h1>Vuttr</h1>

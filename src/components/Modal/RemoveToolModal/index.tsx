@@ -1,6 +1,7 @@
 import Button from 'components/Button';
 import Modal from 'components/Modal';
 import { api } from 'services/api';
+import { toast } from 'react-toastify';
 
 import * as S from './styles';
 
@@ -19,8 +20,11 @@ const RemoveToolModal: React.FC<RemoveToolModalProps> = ({
   close,
   getTools,
 }) => {
+  const notify = () => toast.success(`${toolName} was removed!`);
+
   const deleteTool = async () => {
     await api.delete(`tools/${id}`);
+    notify();
     getTools();
   };
 

@@ -5,6 +5,7 @@ import SearchBar from 'components/SearchBar';
 import ToolCard from 'components/ToolCard';
 import Spinner from 'components/Spinner';
 import Checkbox from 'components/Checkbox';
+import Toast from 'components/Toast';
 
 import * as S from './styles';
 
@@ -59,6 +60,8 @@ const Home: React.FC = () => {
 
   return (
     <S.Container>
+      <Toast />
+
       <h1>Vuttr</h1>
       <h3>Very Useful Tools to Remember</h3>
 

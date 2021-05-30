@@ -76,7 +76,7 @@ const Home: React.FC = () => {
         <Spinner />
       ) : (
         tools.map((tool) => {
-          return <ToolCard key={tool.id} tool={tool} />;
+          return <ToolCard key={tool.id} tool={tool} getTools={getTools} />;
         })
       )}
     </S.Container>

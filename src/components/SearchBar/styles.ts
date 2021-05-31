@@ -30,7 +30,7 @@ export const Input = styled.input(
     transition: 0.4s;
     width: 100%;
 
-    color: ${theme.colors.lightInk};
+    color: ${theme.colors.ink};
     font-size: 1.25rem;
     letter-spacing: 0.025rem;
     line-height: 1.625rem;

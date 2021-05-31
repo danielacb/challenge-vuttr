@@ -6,6 +6,8 @@ import ToolCard from 'components/ToolCard';
 import Spinner from 'components/Spinner';
 import Checkbox from 'components/Checkbox';
 import Toast from 'components/Toast';
+import Button from 'components/Button';
+import AddNewToolModal from 'components/Modal/AddNewToolModal';
 
 import * as S from './styles';
 
@@ -22,6 +24,7 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [isTagSelected, setIsTagSelected] = useState(false);
   const [tools, setTools] = useState<ToolProps[]>([]);
+  const [isNewToolModalOpen, setIsNewToolModalOpen] = useState(false);
 
   const getTools = async () => {
     setLoading(true);
@@ -73,6 +76,7 @@ const Home: React.FC = () => {
           checked={isTagSelected}
           onChange={() => setIsTagSelected(!isTagSelected)}
         />
+        <Button onClick={() => setIsNewToolModalOpen(true)}>Add Tool</Button>
       </S.Actions>
 
       {loading ? (
@@ -82,6 +86,8 @@ const Home: React.FC = () => {
           return <ToolCard key={tool.id} tool={tool} getTools={getTools} />;
         })
       )}
+
+      <AddNewToolModal display={isNewToolModalOpen} close={() => setIsNewToolModalOpen(false)} />
     </S.Container>
   );
 };

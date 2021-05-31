@@ -28,14 +28,23 @@ export const Actions = styled.div`
     margin: 1.2rem 0;
   }
 
+  button {
+    margin-top: 1.5rem;
+  }
+
   @media (min-width: 880px) {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
 
     input {
-      width: 30rem;
+      width: 28rem;
       margin: 0;
+    }
+
+    button {
+      margin-left: auto;
+      margin-top: 0;
     }
   }
 `;

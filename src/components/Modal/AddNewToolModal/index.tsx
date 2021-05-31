@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import Modal from 'components/Modal';
 import InputText from 'components/Form/InputText';
 import Textarea from 'components/Form/Textarea';
+import InputTag from 'components/Form/InputTag';
 import Button from 'components/Button';
 
 import * as S from './styles';
@@ -18,18 +19,22 @@ type InputsProps = {
   title: string;
   link: string;
   description: string;
+  tags: Array<string>;
 };
 
 const schema = yup.object().shape({
   title: yup.string().required('Tool name is required'),
   link: yup.string().url('Enter a valid url').required(),
   description: yup.string().required('Tool description is requierd'),
+  tags: yup.array().min(1, 'Add at least one tag').required(),
 });
 
 const NewToolModal: React.FC<NewToolModalProps> = ({ display, close }) => {
   const {
     register,
     reset,
+    setValue,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
@@ -73,6 +78,15 @@ const NewToolModal: React.FC<NewToolModalProps> = ({ display, close }) => {
           register={register}
           error={errors.description}
           errorMessage={errors.description?.message}
+        />
+        <InputTag
+          name="tags"
+          label="Tags"
+          setValue={setValue}
+          register={register}
+          placeholder="Type and press enter"
+          error={errors.tags && watch('tags')?.length === 0}
+          errorMessage={errors.tags?.message}
         />
         <S.Actions>
           <Button type="submit">Add new tool</Button>

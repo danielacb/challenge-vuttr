@@ -87,7 +87,11 @@ const Home: React.FC = () => {
         })
       )}
 
-      <AddNewToolModal display={isNewToolModalOpen} close={() => setIsNewToolModalOpen(false)} />
+      <AddNewToolModal
+        display={isNewToolModalOpen}
+        close={() => setIsNewToolModalOpen(false)}
+        getTools={getTools}
+      />
     </S.Container>
   );
 };

@@ -1,7 +1,9 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
+import { api } from 'services/api';
 import Modal from 'components/Modal';
 import InputText from 'components/Form/InputText';
 import Textarea from 'components/Form/Textarea';
@@ -13,6 +15,7 @@ import * as S from './styles';
 type NewToolModalProps = {
   display: boolean;
   close: () => void;
+  getTools: () => void;
 };
 
 type InputsProps = {
@@ -29,7 +32,7 @@ const schema = yup.object().shape({
   tags: yup.array().min(1, 'Add at least one tag').required(),
 });
 
-const NewToolModal: React.FC<NewToolModalProps> = ({ display, close }) => {
+const NewToolModal: React.FC<NewToolModalProps> = ({ display, close, getTools }) => {
   const {
     register,
     reset,
@@ -45,7 +48,9 @@ const NewToolModal: React.FC<NewToolModalProps> = ({ display, close }) => {
   };
 
   const addNewTool: SubmitHandler<InputsProps> = async (data) => {
-    console.log(data);
+    api.post('tools', data);
+    toast.success(`${data.title} was added successfully!`);
+    getTools();
     closeModal();
   };
 

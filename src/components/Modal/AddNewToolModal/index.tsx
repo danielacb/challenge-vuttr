@@ -48,7 +48,7 @@ const NewToolModal: React.FC<NewToolModalProps> = ({ display, close, getTools })
   };
 
   const addNewTool: SubmitHandler<InputsProps> = async (data) => {
-    api.post('tools', data);
+    await api.post('tools', data);
     toast.success(`${data.title} was added successfully!`);
     getTools();
     closeModal();

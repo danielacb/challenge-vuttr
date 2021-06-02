@@ -48,3 +48,8 @@ export const Actions = styled.div`
     }
   }
 `;
+
+export const EmptyState = styled.p`
+  margin-top: 4rem;
+  text-align: center;
+`;

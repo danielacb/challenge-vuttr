@@ -81,6 +81,8 @@ const Home: React.FC = () => {
 
       {loading ? (
         <Spinner />
+      ) : tools.length === 0 ? (
+        <S.EmptyState>Your search returned no results!</S.EmptyState>
       ) : (
         tools.map((tool) => {
           return <ToolCard key={tool.id} tool={tool} getTools={getTools} />;
